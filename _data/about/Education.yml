@@ -1,0 +1,11 @@
+subject: Education
+listing-order: 2
+icon: "/assets/img/graduation-cap.svg"
+contents:
+  - title: Indraprastha University, B-Tech in Computer Science Engineering
+    description:
+      - Graduated with a B.Tech in Computer Science, completing a final year project on Big Data Analysis 
+      - An internship at a website builder startup, gaining practical experience in full-stack development and data-driven applications
+    grade: "**Distinction**: `1'st`"
+    date: July. 2013 - June. 2017
+  

@@ -1,0 +1,29 @@
+subject: Experiences
+listing-order: 3
+icon: "/assets/img/briefcase.svg"
+contents:
+  - title: AWS Proserve India 
+    role: Cloud Consultant (DevOps, Migration & Modernization)
+    description:
+      - Led presales and sales support initiatives through customer workshops focused on DevOps and migration strategies, emphasizing deep technical dives and a adherence to high standards.
+      - Identified customer pain points and addressed them with innovative, backward-designed solutions aligned to business goals.
+      - Developed reusable automation assets to reduce delivery time and operational costs for clients.
+      - Successfully migrated 100+ applications with heterogeneous architectures to over 40 AWS accounts under AWS Control Tower by designing and leveraging standardized, reusable assets developed in-house - resulting in a 70% reduction in time and cost.
+      - Modernized 3+ legacy and monolithic systems into microservices architectures using AWS services, delivering highly scalable and resilient solutions capable of handling 10K+ transactions per second with zero downtime.  
+      - Architected and deployed a GenAI-powered EKS/Kubernetes audit solution for compliance and best practices, alongside Landing Zone setup, target architecture design, and infrastructure as code (IaC) deployment on AWS.
+    date: Dec. 2022 - Ongoing
+  
+  - title: Deloitte USI
+    role: Delivery Consultant
+    description: 
+      - Delivered 15+ high-volume asynchronous integration solutions on Oracle Integration Cloud (OIC), enabling seamless operations within Oracle Financials Accounting Hub.
+      - Designed and implemented CI/CD pipelines on Oracle Cloud Infrastructure (OCI) using a GitOps-driven approach, automating the build and deployment of multiple artifacts and achieving an ~85% reduction in deployment time.
+      - The automation framework was later adopted internally by Deloitte USI for use with other clients, following successful delivery and positive Voice of the Customer (VoC) feedback.
+    date: Apr. 2021 - Dec. 2022
+  
+  - title: Torry Hariss Business Solution
+    role: Software Engineer 
+    description: 
+      - Worked across 5 key projects for SBI Cards, contributing to API development, microservices design, and DevOps automation initiatives. Played a hands-on role in backend development, middleware administration, and CI/CD pipeline implementation.
+      - Notable projects included a WhatsApp chatbot integration and the development of a CI/CD pipeline in Jenkins integrated with JIRA for deploying Oracle middleware artifacts.
+    date: Oct. 2017 - Apr. 2021

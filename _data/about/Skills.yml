@@ -1,0 +1,26 @@
+subject: Skills
+listing-order: 6
+icon: "/assets/img/screwdriver-wrench.svg"
+contents:
+  - title: Amazon Web Service
+    description: 
+      - "**Architect Consultant**"
+      - "**Networking**: VPC, Transit gateway, Firewall, Routing"
+      - "**Compute**: EC2, ECS, EKS, Lambda"
+      - "**Devops**: AWS Codestar, CodeBuild, CodePipeline"
+      - "**GenAI + Connect**: Bedrock + Knowledge Base, Kendra, Lex"
+      - "**Storage**: S3, EFS, FSx, RDS"
+      - "**Security**: AWS Custom Config, Control Tower Guardrails, Security Hub, KMS"
+      - "**FinOps, Management and Governance**"
+    # description: "
+    #   ![devicon](https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg)
+    # "
+
+  - title: IAC, Devops & Orchestrator
+    description: 
+      - "**Terraform, CDK, Cloudformation**"
+      - "**Kubernetes, Oracle integration Cloud**"
+      - "**Jenkins, GitHub Actions**"
+  
+  - title: Languages & Framework
+    description: Python, Bash, Java spring, .Net core, ELK stack, PL/SQL

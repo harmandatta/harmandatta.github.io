@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" type="image/png" href="/assets/img/icon.webp">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <title>Under Maintenance</title>
+  <style>
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .mainbody {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 500px;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #007acc;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+
+    /* Navbar base */
+    .navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+
+    .navbar .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .logo {
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: none;
+    color: #333;
+    }
+
+    .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    }
+
+    .nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+    color: #007acc;
+    }
+
+    /* Mobile toggle hidden on desktop */
+    .nav-toggle {
+    display: none;
+    }
+
+    .nav-toggle-label {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    }
+
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+    display: block;
+    background: #333;
+    height: 3px;
+    width: 25px;
+    border-radius: 2px;
+    position: relative;
+    }
+
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    }
+
+    .nav-toggle-label span::before {
+    top: -8px;
+    }
+
+    .nav-toggle-label span::after {
+    top: 8px;
+    }
+
+    /* Responsive: Mobile Styles */
+    @media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        display: none;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .nav-toggle:checked + .nav-toggle-label + .nav-links {
+        display: flex;
+    }
+
+    .nav-toggle-label {
+        display: flex;
+    }
+    }
+
+  </style>  
+</head>
+<body>
+  <nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo">Harman Datta</a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/assets/resume.pdf" target="_blank">Download CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="mainbody">
+    <div class="container"> 
+        <h1>We'll Be Back Soon</h1>
+        <p>Our website is currently undergoing scheduled maintenance.<br />
+        Thank you for your patience.</p>
+        <footer>– Harman Datta</footer>
+    </div>
+  </div>
+  
+</body>
+</html>
