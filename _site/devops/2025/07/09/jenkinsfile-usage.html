@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenkinsfile Usage and Implementation</title>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jenkinsfile Usage and Implementation | Harman Singh Datta</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Jenkinsfile Usage and Implementation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks." />
+<meta property="og:description" content="Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks." />
+<link rel="canonical" href="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" />
+<meta property="og:url" content="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" />
+<meta property="og:site_name" content="Harman Singh Datta" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-09T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jenkinsfile Usage and Implementation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-07-09T00:00:00+05:30","datePublished":"2025-07-09T00:00:00+05:30","description":"Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks.","headline":"Jenkinsfile Usage and Implementation","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html"},"url":"http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="icon" type="image/png" href="/assets/img/icon.webp">
+  <link rel="shortcut icon" type="image/png" href="/assets/img/icon.webp">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  
+</head>
+<body>
+  <nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo">Harman Datta</a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/assets/resume.pdf" target="_blank">Download CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="posts-container">
+    <!-- Header Section -->
+    <div class="posts-title">Jenkinsfile Usage and Implementation</div>
+    <div class="posts-description">
+      Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks.
+
+    </div>
+
+    <!-- Meta Row 1 -->
+    <div class="meta-row">
+      <div class="meta-left">Posted: July 09, 2025 | Updated: July 9, 2025</div>
+      <div class="meta-right">Read Time: 8 min</div>
+    </div>
+
+    <!-- Meta Row 2 -->
+    <div class="meta-row">
+      <div class="meta-left">Author: Harman Datta</div>
+      <div class="meta-right">Level: Intermediate</div>
+    </div>
+
+    <!-- Meta Row 3 -->
+    <div class="meta-row">
+      <div class="meta-left">Tags: #devops #jenkins #ci-cd #github</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Main Content -->
+    <div class="posts-content">
+      
+      <p>Jenkins is a cornerstone tool in the DevOps ecosystem, allowing teams to automate builds, tests, and deployments using pipelines. At the core of this automation is the <strong>Jenkinsfile</strong>, a simple yet powerful way to define your CI/CD workflows as code.</p>
+
+<p>In this post, you’ll learn:</p>
+<ol>
+  <li>What a Jenkinsfile is and how to write one.</li>
+  <li>How to implement a Jenkins pipeline with real-world stages</li>
+  <li>How to integrate Jenkins with GitHub using webhooks for trigger-based automation</li>
+</ol>
+
+<h2 id="what-is-a-jenkinsfile">What is a Jenkinsfile?</h2>
+<p>A <strong>Jenkinsfile</strong> is a configuration file that lives in your repository and defines how your pipeline behaves. It ensures consistent, repeatable, and trackable build steps.</p>
+
+<h2 id="basic-jenkinsfile-structure">Basic Jenkinsfile Structure</h2>
+<p>Here’s a sample Declarative Jenkinsfile:</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+
+    <span class="n">environment</span> <span class="o">{</span>
+        <span class="n">PROJECT_NAME</span> <span class="o">=</span> <span class="s1">'my-app'</span>
+        <span class="n">DEPLOY_ENV</span> <span class="o">=</span> <span class="s1">'staging'</span>
+    <span class="o">}</span>
+
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Checkout'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">git</span> <span class="s1">'https://github.com/your-repo/project.git'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'./build.sh'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Test'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'./run_tests.sh'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Deploy'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'./deploy.sh ${DEPLOY_ENV}'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">post</span> <span class="o">{</span>
+        <span class="n">success</span> <span class="o">{</span>
+            <span class="n">echo</span> <span class="s1">'Pipeline executed successfully.'</span>
+        <span class="o">}</span>
+        <span class="n">failure</span> <span class="o">{</span>
+            <span class="n">echo</span> <span class="s1">'Pipeline failed.'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h2 id="github-integration-with-jenkins-using-webhooks">GitHub Integration with Jenkins Using Webhooks</h2>
+<p>Integrating Jenkins with GitHub ensures your CI/CD pipeline runs automatically when code is pushed. Here’s how to set it up:</p>
+
+<h3 id="1-install-required-plugins">1. Install Required Plugins</h3>
+<p>In Jenkins, install the following:</p>
+<ul>
+  <li>GitHub Integration Plugin</li>
+  <li>GitHub Branch Source Plugin</li>
+  <li>Pipeline Plugin</li>
+</ul>
+
+<h3 id="2-create-jenkins-credentials-for-github">2. Create Jenkins Credentials for GitHub</h3>
+<ol>
+  <li>Go to <strong>Jenkins → Manage Jenkins → Credentials</strong>.</li>
+  <li>Add credentials for GitHub (personal access token or SSH key).</li>
+  <li>Note the <code class="language-plaintext highlighter-rouge">credentialsId</code> for use in pipelines.</li>
+</ol>
+
+<h3 id="3-configure-the-github-project-in-jenkins">3. Configure the GitHub Project in Jenkins</h3>
+<ul>
+  <li>Create a new job (<strong>Multibranch Pipeline</strong> or <strong>Pipeline</strong>).</li>
+  <li>In <strong>Pipeline Script from SCM</strong>, choose:
+    <ul>
+      <li>SCM: Git</li>
+      <li>Repo URL: https://github.com/your-user/your-repo.git</li>
+      <li>Credentials: Select the one you added</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ensure your Jenkinsfile is in the root of your repo.</p>
+
+<h3 id="4-set-up-the-webhook-in-github">4. Set Up the Webhook in GitHub</h3>
+<ol>
+  <li>Go to your GitHub repo → <strong>Settings → Webhooks → Add Webhook</strong>.</li>
+  <li>Set the following:
+    <ul>
+      <li><strong>Payload URL</strong>: http://your-jenkins-server/github-webhook/</li>
+      <li><strong>Content Type</strong>: application/json</li>
+      <li><strong>Secret</strong>: <em>(Optional but recommended)</em></li>
+      <li><strong>Trigger</strong>: Select “Just the push event” or include pull requests.</li>
+    </ul>
+  </li>
+  <li>Click <strong>Add Webhook</strong>.</li>
+</ol>
+
+<h3 id="test-it">Test It</h3>
+<p>Push a change to the repository (e.g., modify a file), and Jenkins should automatically trigger a build.</p>
+
+<h2 id="tips-and-best-practices">Tips and Best Practices</h2>
+<ul>
+  <li>Use declarative pipelines for better structure and error handling.</li>
+  <li>Use <strong>multibranch pipelines</strong> to automatically detect and build branches or PRs.</li>
+  <li>Secure your Jenkins instance and <strong>lock down webhook endpoints</strong>.</li>
+  <li>Use <strong>parameterized pipelines</strong> to support deployments to multiple environments.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Jenkinsfiles bring CI/CD automation into your repository with a clear, version-controlled syntax. When combined with GitHub webhooks, you get a seamless and automatic build system triggered by code changes.</p>
+
+<p><em>Happy Pipelin-ing!</em></p>
+
+    </div>
+    
+     <!-- End of post content -->
+<div class="divider"></div>
+
+<!-- Related Reads Section -->
+<div class="related-section">
+  <h2>Related Reads</h2>
+  <div class="related-grid">
+    
+    <div class="related-box">
+      <div class="related-title"><a href="/devops/2025/07/09/jenkinsfile-usage.html">Jenkinsfile Usage and Implementation</a></div>
+      <div class="related-desc">Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks.
+</div>
+    </div>
+    
+    <div class="related-box">
+      <div class="related-title"><a href="/devops/2025/07/10/jenkinsfile-approval-stages.html">Jenkinsfile Approval Stage: Usage, Types, and Implementation</a></div>
+      <div class="related-desc">Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.
+</div>
+    </div>
+    
+  </div>
+</div>
+
+    
+    <!-- Previous / Next Reads Section -->
+<div class="prev-next-section">
+  <div class="nav-grid">
+    
+    
+    <div class="nav-box">
+      <div class="nav-label">Next Read →</div>
+      <div class="nav-title"><a href="/devops/2025/07/10/jenkinsfile-approval-stages.html">Jenkinsfile Approval Stage: Usage, Types, and Implementation</a></div>
+      <div class="nav-desc">Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.
+.</div>
+    </div>
+    
+  </div>
+</div>
+    
+    
+  </div>
+ 
+  <div class="share-buttons">
+  <a href="" target="_blank" title="Copy Link">
+    <img src="/assets/img/share.svg" alt="share">
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" target="_blank" title="Share on Facebook">
+    <img src="/assets/img/facebook.svg" alt="facebook">
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" target="_blank" title="Share on X (Twitter)">
+    <img src="/assets/img/twitter.svg" alt="twitter">
+  </a>
+  <a href="https://www.linkedin.com/shareArticle?url=http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html&title=Jenkinsfile%20Usage%20and%20Implementation"
+   target="_blank"
+   title="Share on LinkedIn">
+     <img src="/assets/img/linkedin.svg" alt="twitter">
+   </a>
+  <a href="https://api.whatsapp.com/send?text=http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" target="_blank" title="Share on WhatsApp">
+    <img src="/assets/img/whatsapp.svg" alt="whatsapp">
+  </a>
+</div>
+
+<div id="footer">
+    <span>
+        Copyright © 2025 | <a href="#">HarmanDatta</a>
+    </span>
+</div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenkinsfile Approval Stage: Usage, Types, and Implementation</title>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jenkinsfile Approval Stage: Usage, Types, and Implementation | Harman Singh Datta</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Jenkinsfile Approval Stage: Usage, Types, and Implementation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals." />
+<meta property="og:description" content="Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals." />
+<link rel="canonical" href="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" />
+<meta property="og:url" content="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" />
+<meta property="og:site_name" content="Harman Singh Datta" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-10T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jenkinsfile Approval Stage: Usage, Types, and Implementation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-07-10T00:00:00+05:30","datePublished":"2025-07-10T00:00:00+05:30","description":"Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.","headline":"Jenkinsfile Approval Stage: Usage, Types, and Implementation","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html"},"url":"http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="icon" type="image/png" href="/assets/img/icon.webp">
+  <link rel="shortcut icon" type="image/png" href="/assets/img/icon.webp">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  
+</head>
+<body>
+  <nav class="navbar">
+  <div class="container">
+    <a href="/" class="logo">Harman Datta</a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/assets/resume.pdf" target="_blank">Download CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="posts-container">
+    <!-- Header Section -->
+    <div class="posts-title">Jenkinsfile Approval Stage: Usage, Types, and Implementation</div>
+    <div class="posts-description">
+      Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.
+
+    </div>
+
+    <!-- Meta Row 1 -->
+    <div class="meta-row">
+      <div class="meta-left">Posted: July 10, 2025 | Updated: July 9, 2025</div>
+      <div class="meta-right">Read Time: 10 min</div>
+    </div>
+
+    <!-- Meta Row 2 -->
+    <div class="meta-row">
+      <div class="meta-left">Author: Harman Datta</div>
+      <div class="meta-right">Level: Intermediate</div>
+    </div>
+
+    <!-- Meta Row 3 -->
+    <div class="meta-row">
+      <div class="meta-left">Tags: #devops #jenkins</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Main Content -->
+    <div class="posts-content">
+      
+      <h2 id="jenkinsfile-approval-stage">Jenkinsfile Approval Stage</h2>
+<p>In modern CI/CD pipelines, not every step should be automated—particularly when it comes to production deployments or critical actions. For such cases, Jenkins provides a way to pause pipeline execution and wait for manual approval using the <code class="language-plaintext highlighter-rouge">input</code> directive.</p>
+
+<p>This feature adds a layer of human validation, making it suitable for quality gates, business approvals, or release management.</p>
+
+<h2 id="usage">Usage</h2>
+<p>The approval stage is used when:</p>
+<ul>
+  <li>A team lead or QA needs to approve deployment</li>
+  <li>Risk mitigation is required before production actions</li>
+  <li>Decisions based on environment, business readiness, or external factors need to be made</li>
+</ul>
+
+<p>Jenkins uses the <code class="language-plaintext highlighter-rouge">input</code> step inside a stage to halt pipeline execution and prompt for manual intervention.</p>
+
+<h2 id="implementation">Implementation</h2>
+<h3 id="basic-yesno-approval-example">Basic Yes/No Approval Example</h3>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s1">'Building...'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Approval'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">input</span> <span class="nl">message:</span> <span class="s1">'Do you want to proceed to deployment?'</span><span class="o">,</span> <span class="nl">ok:</span> <span class="s1">'Yes'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Deploy'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">echo</span> <span class="s1">'Deploying application...'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="types-of-approval-inputs">Types of Approval Inputs</h2>
+<p>Jenkins supports multiple types of manual approvals using the <code class="language-plaintext highlighter-rouge">input</code> step:</p>
+
+<h3 id="1-simple-yesno-approval">1. Simple Yes/No Approval</h3>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input</span> <span class="nl">message:</span> <span class="s1">'Deploy to Production?'</span><span class="o">,</span> <span class="nl">ok:</span> <span class="s1">'Yes'</span>
+</code></pre></div></div>
+
+<h3 id="2-choice-based-approval">2. Choice-Based Approval</h3>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input</span> <span class="nl">message:</span> <span class="s1">'Select environment for deployment:'</span><span class="o">,</span>
+      <span class="nl">parameters:</span> <span class="o">[</span>
+          <span class="n">choice</span><span class="o">(</span><span class="nl">name:</span> <span class="s1">'Environment'</span><span class="o">,</span> <span class="nl">choices:</span> <span class="o">[</span><span class="s1">'staging'</span><span class="o">,</span> <span class="s1">'production'</span><span class="o">],</span> <span class="nl">description:</span> <span class="s1">'Choose environment'</span><span class="o">)</span>
+      <span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="3-text-input">3. Text Input</h3>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input</span> <span class="nl">message:</span> <span class="s1">'Enter deployment version:'</span><span class="o">,</span>
+      <span class="nl">parameters:</span> <span class="o">[</span>
+          <span class="n">string</span><span class="o">(</span><span class="nl">name:</span> <span class="s1">'VERSION'</span><span class="o">,</span> <span class="nl">defaultValue:</span> <span class="s1">'v1.0.0'</span><span class="o">,</span> <span class="nl">description:</span> <span class="s1">'Version to deploy'</span><span class="o">)</span>
+      <span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="4-input-with-timeout">4. Input with Timeout</h3>
+<p>You can use a <code class="language-plaintext highlighter-rouge">timeout</code> block to automatically fail or proceed if no input is provided within a defined time.</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stage</span><span class="o">(</span><span class="s1">'Approval'</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">steps</span> <span class="o">{</span>
+        <span class="n">timeout</span><span class="o">(</span><span class="nl">time:</span> <span class="mi">10</span><span class="o">,</span> <span class="nl">unit:</span> <span class="s1">'MINUTES'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">input</span> <span class="nl">message:</span> <span class="s1">'Approve deployment?'</span><span class="o">,</span> <span class="nl">ok:</span> <span class="s1">'Proceed'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This will wait for 10 minutes. If no action is taken, the pipeline will abort.</p>
+
+<h2 id="image-jenkins-pipeline-with-approval-stage">Image: Jenkins Pipeline with Approval Stage</h2>
+<p>Below is a conceptual diagram of a Jenkins pipeline with an approval stage:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Checkout] ---&gt; [Build] ---&gt; [Approval (Manual Input)] ---&gt; [Deploy]
+</code></pre></div></div>
+
+<p><img src="/assets/img/posts/jenkinsfile-approval/approval-stage.webp" alt="Approval Stage Image" /></p>
+
+<p>If the approval is granted, the pipeline proceeds. If rejected or timed out, the pipeline fails or halts depending on configuration.</p>
+
+<h2 id="benefits">Benefits</h2>
+<ul>
+  <li>Human validation for critical stages</li>
+  <li>Prevents unintended changes from being deployed</li>
+  <li>Enables custom branching and logic</li>
+  <li>Provides audit trails for approvals</li>
+</ul>
+
+<h2 id="considerations">Considerations</h2>
+<ul>
+  <li>Ensure users have proper permissions to approve</li>
+  <li>Combine with <code class="language-plaintext highlighter-rouge">timeout</code> for better control</li>
+  <li>Document who approves what and why for audit readiness</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Jenkins approval stages are essential for controlled and secure deployments. They give teams a chance to verify and intervene before high-risk actions. With support for yes/no inputs, options, and text parameters, Jenkins pipelines can flexibly integrate manual steps where necessary.</p>
+
+<p><em>Happy Pipelin-ing!</em></p>
+
+    </div>
+    
+     <!-- End of post content -->
+<div class="divider"></div>
+
+<!-- Related Reads Section -->
+<div class="related-section">
+  <h2>Related Reads</h2>
+  <div class="related-grid">
+    
+    <div class="related-box">
+      <div class="related-title"><a href="/devops/2025/07/09/jenkinsfile-usage.html">Jenkinsfile Usage and Implementation</a></div>
+      <div class="related-desc">Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks.
+</div>
+    </div>
+    
+    <div class="related-box">
+      <div class="related-title"><a href="/devops/2025/07/10/jenkinsfile-approval-stages.html">Jenkinsfile Approval Stage: Usage, Types, and Implementation</a></div>
+      <div class="related-desc">Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.
+</div>
+    </div>
+    
+  </div>
+</div>
+
+    
+    <!-- Previous / Next Reads Section -->
+<div class="prev-next-section">
+  <div class="nav-grid">
+    
+    <div class="nav-box">  
+      <div class="nav-label">← Previous Read</div>
+      <div class="nav-title"><a href="/devops/2025/07/09/jenkinsfile-usage.html">Jenkinsfile Usage and Implementation</a></div>
+      <div class="nav-desc">Learn how to use Jenkinsfiles for CI/CD automation with practical examples and integrate Jenkins with GitHub using webhooks.
+</div>
+    </div>
+    
+    
+  </div>
+</div>
+    
+    
+  </div>
+ 
+  <div class="share-buttons">
+  <a href="" target="_blank" title="Copy Link">
+    <img src="/assets/img/share.svg" alt="share">
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" target="_blank" title="Share on Facebook">
+    <img src="/assets/img/facebook.svg" alt="facebook">
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" target="_blank" title="Share on X (Twitter)">
+    <img src="/assets/img/twitter.svg" alt="twitter">
+  </a>
+  <a href="https://www.linkedin.com/shareArticle?url=http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html&title=Jenkinsfile%20Approval%20Stage:%20Usage,%20Types,%20and%20Implementation"
+   target="_blank"
+   title="Share on LinkedIn">
+     <img src="/assets/img/linkedin.svg" alt="twitter">
+   </a>
+  <a href="https://api.whatsapp.com/send?text=http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" target="_blank" title="Share on WhatsApp">
+    <img src="/assets/img/whatsapp.svg" alt="whatsapp">
+  </a>
+</div>
+
+<div id="footer">
+    <span>
+        Copyright © 2025 | <a href="#">HarmanDatta</a>
+    </span>
+</div>
+</body>
+</html>

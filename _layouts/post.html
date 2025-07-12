@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% assign filteredpost = "" | split: "" %}
+    {% for category in page.categories %}
+        {% assign filteredpost =  site.posts | where_exp: "post", "post.categories contains category" %}
+    {% endfor %}
+    {% assign filteredpost = filteredpost | sample: 3 %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ page.title }}</title>
+  {% seo %}
+  <link rel="icon" type="image/png" href="{{ site.icon_img | prepend: site.baseurl }}">
+  <link rel="shortcut icon" type="image/png" href="{{ site.icon_img | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | prepend: site.baseurl }}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  
+</head>
+<body>
+  {% include header.html %}
+  <div class="posts-container">
+    <!-- Header Section -->
+    <div class="posts-title">{{ page.title }}</div>
+    <div class="posts-description">
+      {{ page.description }}
+    </div>
+
+    <!-- Meta Row 1 -->
+    <div class="meta-row">
+      <div class="meta-left">Posted: {{ page.date | date: "%B %d, %Y" }} | Updated: July 9, 2025</div>
+      <div class="meta-right">Read Time: {{ page.readtime }}</div>
+    </div>
+
+    <!-- Meta Row 2 -->
+    <div class="meta-row">
+      <div class="meta-left">Author: {{ page.author | default: "Harman Datta" }}</div>
+      <div class="meta-right">Level: {{ page.level }}</div>
+    </div>
+
+    <!-- Meta Row 3 -->
+    <div class="meta-row">
+      <div class="meta-left">Tags: #{{ page.tags | join: ' #' }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Main Content -->
+    <div class="posts-content">
+      {% if page.image %}
+        <img src="{{ page.image | prepend: site.baseurl }}" alt="{{ page.title }}" class="post-image">
+      {% endif %}
+      {{ content }}
+    </div>
+    
+     <!-- End of post content -->
+<div class="divider"></div>
+
+<!-- Related Reads Section -->
+<div class="related-section">
+  <h2>Related Reads</h2>
+  <div class="related-grid">
+    {% for post in filteredpost %}
+    <div class="related-box">
+      <div class="related-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+      <div class="related-desc">{{ post.description }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+    
+    <!-- Previous / Next Reads Section -->
+<div class="prev-next-section">
+  <div class="nav-grid">
+    {% if page.previous %}
+    <div class="nav-box">  
+      <div class="nav-label">← Previous Read</div>
+      <div class="nav-title"><a href="{{ page.previous.url }}">{{ page.previous.title }}</a></div>
+      <div class="nav-desc">{{ page.previous.description }}</div>
+    </div>
+    {% endif %}
+    {% if page.next %}
+    <div class="nav-box">
+      <div class="nav-label">Next Read →</div>
+      <div class="nav-title"><a href="{{ page.next.url }}">{{ page.next.title }}</a></div>
+      <div class="nav-desc">{{ page.next.description }}.</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+    
+    
+  </div>
+ 
+  <div class="share-buttons">
+  <a href="" target="_blank" title="Copy Link">
+    <img src="{{ '/assets/img/share.svg' | prepend: site.baseurl }}" alt="share">
+  </a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: site.url }}" target="_blank" title="Share on Facebook">
+    <img src="{{ '/assets/img/facebook.svg' | prepend: site.baseurl }}" alt="facebook">
+  </a>
+  <a href="https://twitter.com/intent/tweet?url={{ page.url | prepend: site.url }}" target="_blank" title="Share on X (Twitter)">
+    <img src="{{ '/assets/img/twitter.svg' | prepend: site.baseurl }}" alt="twitter">
+  </a>
+  <a href="https://www.linkedin.com/shareArticle?url={{ page.url | absolute_url | uri_escape }}&title={{ page.title | uri_escape }}"
+   target="_blank"
+   title="Share on LinkedIn">
+     <img src="{{ '/assets/img/linkedin.svg' | prepend: site.baseurl }}" alt="twitter">
+   </a>
+  <a href="https://api.whatsapp.com/send?text={{ page.url | prepend: site.url }}" target="_blank" title="Share on WhatsApp">
+    <img src="{{ '/assets/img/whatsapp.svg' | prepend: site.baseurl }}" alt="whatsapp">
+  </a>
+</div>
+
+<div id="footer">
+    <span>
+        Copyright © 2025 | <a href="#">HarmanDatta</a>
+    </span>
+</div>
+</body>
+</html>

@@ -55,3 +55,14 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }, 200);
 });
+
+function filterPosts(query) {
+      const posts = document.querySelectorAll(".post-box");
+      const q = query.toLowerCase();
+      posts.forEach(post => {
+        const title = post.querySelector(".post-title").textContent.toLowerCase();
+        const tags = post.dataset.tags.toLowerCase();
+        const match = title.includes(q) || tags.includes(q);
+        post.classList.toggle("hidden", !match);
+      });
+}

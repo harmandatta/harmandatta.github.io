@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
-  <body>
-    <main>
-      {{ content }}
-    </main>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ page.title }}</title>
+  {% seo %}
+  <link rel="icon" type="image/png" href="{{ site.icon_img | prepend: site.baseurl }}">
+  <link rel="shortcut icon" type="image/png" href="{{ site.icon_img | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | prepend: site.baseurl }}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body class="{{ page.body_class }}">
+  {% include header.html %}
+  <div class="page-container">
+    <h1>Posts</h1>
+    <input type="text" class="search-bar" placeholder="Search posts by title or tags..." oninput="filterPosts(this.value)" />
+
+    <div class="posts-grid" id="posts-container">
+      {% for post in site.posts %}
+        <div class="post-box" data-tags="{{ post.tags }}">
+          {% if post.thumbnail %}
+          <img class="post-thumbnail" src="{{ post.thumbnail | prepend: site.baseurl }}" alt="AWS Thumbnail" />
+          {% endif %}
+          <a href="{{ post.url }}">
+            <div class="post-content">
+              <div class="post-title">{{ post.title }}</div>
+              <div class="post-tags">#{{ post.tags | join: ' #' }}</div>
+              {{ post.description }}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="footer">
+    <span>
+      Copyright © 2025 | <a href="#">HarmanDatta</a>
+    </span>
+  </div>
+</body>
+<script src="{{ '/assets/js/main.js' | prepend: site.baseurl }}"></script>
 </html>

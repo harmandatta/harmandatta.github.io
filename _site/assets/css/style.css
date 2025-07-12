@@ -29,6 +29,7 @@ body {
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
   background: var(--color-background);
+  margin-bottom: 4%;
 }
 body:before {
   display: none;
@@ -323,6 +324,10 @@ a {
   padding: 1rem;
   background: var(--footer-medium);
   font-size: 14px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 #footer a {
   color: var(--theme1-light);
@@ -330,7 +335,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  body::before {
+  body.about-page::before {
     content: "";
     display: block;
     position: fixed;
@@ -482,7 +487,7 @@ a {
 /* Navbar base */
 .navbar {
   background-color: #fff;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 4px solid #eaeaea;
   padding: 10px 0;
   position: sticky;
   top: 0;
@@ -583,5 +588,327 @@ a {
     display: flex;
   }
 }
+.page-container {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.post-box {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.post-thumbnail {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.post-content {
+  flex: 1;
+}
+
+.post-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #007acc;
+}
+
+.post-tags {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  .post-box {
+    display: block;
+    text-align: center;
+  }
+}
+body.home-page {
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  background: var(--color-background);
+}
+
+.posts-container {
+  max-width: 70%;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.posts-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.posts-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 0.4rem;
+}
+
+.meta-left, .meta-right {
+  flex: 1;
+}
+
+.meta-right {
+  text-align: right;
+}
+
+.divider {
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.posts-content p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.posts-content h2 {
+  margin-top: 2rem;
+  color: #007acc;
+}
+
+.related-section {
+  margin-top: 3rem;
+}
+
+.related-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.related-box {
+  background: #f2f5f7;
+  border: 1px solid #dde3e8;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.related-box:hover {
+  background: #eaf2f9;
+}
+
+.related-title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #007acc;
+}
+
+.related-desc {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.prev-next-section {
+  margin-top: 3rem;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.nav-box {
+  background: #fff4e5;
+  border: 1px solid #f5d2a3;
+  padding: 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.nav-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #d17b00;
+  margin-bottom: 0.3rem;
+}
+
+.nav-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.nav-desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.share-buttons {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 1000;
+  padding: 0.4rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px 0 0 8px;
+  box-shadow: -1px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.share-buttons a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #444;
+  transition: color 0.2s ease;
+}
+
+.share-buttons img {
+  height: 30px;
+}
+
+.share-buttons a:hover img {
+  color: #007acc;
+  height: 35px;
+}
+
+.posts-content ul > li {
+  list-style: disc;
+}
+
+.posts-content ul {
+  padding-left: 2%;
+}
+
+.posts-content ol > li {
+  list-style: decimal;
+}
+
+/* Base code block style */
+pre, code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 0.95em;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 0.5em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* Block code */
+pre {
+  margin: 1em 0;
+  line-height: 1.5;
+  border: 1px solid #f5f5f5;
+  padding: 1em;
+}
+
+/* Inline code */
+code {
+  padding: 0.2em 0.4em;
+  background-color: #f5f5f5;
+  color: #c7254e;
+  border-radius: 3px;
+}
+
+/* Syntax colors (if using Rouge or Pygments with Jekyll) */
+.highlight .c {
+  color: #999988;
+  font-style: italic;
+} /* Comment */
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+} /* Error */
+.highlight .k {
+  color: #0077aa;
+  font-weight: bold;
+} /* Keyword */
+.highlight .o {
+  color: #333;
+} /* Operator */
+.highlight .cm {
+  color: #999988;
+  font-style: italic;
+} /* Comment.Multiline */
+.highlight .cp {
+  color: #444;
+} /* Comment.Preproc */
+.highlight .nt {
+  color: #0077aa;
+} /* Name.Tag */
+.highlight .s {
+  color: #dd1144;
+} /* String */
+.highlight .na {
+  color: #333;
+} /* Name.Attribute */
+.highlight .nb {
+  color: #444;
+} /* Name.Builtin */
+.highlight .nc {
+  color: #445588;
+  font-weight: bold;
+} /* Name.Class */
+.highlight .m {
+  color: #009999;
+} /* Literal.Number */
+.highlight .p {
+  color: #444;
+} /* Punctuation */
 
 /*# sourceMappingURL=style.css.map */
