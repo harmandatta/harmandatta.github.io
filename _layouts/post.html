@@ -27,7 +27,7 @@
 
     <!-- Meta Row 1 -->
     <div class="meta-row">
-      <div class="meta-left">Posted: {{ page.date | date: "%B %d, %Y" }} | Updated: July 9, 2025</div>
+      <div class="meta-left">Posted: {{ page.date | date: "%B %d, %Y" }} {% if page.updated %}| Updated: {{ page.updated }} {% endif %}</div>
       <div class="meta-right">Read Time: {{ page.readtime }}</div>
     </div>
 
