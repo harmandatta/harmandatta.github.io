@@ -64,7 +64,6 @@ function filterPosts(query) {
         const title = post.querySelector(".post-title").textContent.toLowerCase();
         const tags = post.dataset.tags.toLowerCase();
         const match = title.includes(q) || tags.includes(q);
-        alert("matched: "+match)
         post.classList.toggle("hidden", !match);
       });
 }
