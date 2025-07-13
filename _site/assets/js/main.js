@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function(){
 function filterPosts(query) {
       const posts = document.querySelectorAll(".post-box");
       const q = query.toLowerCase();
+      alert("you wrote: "+q)
       posts.forEach(post => {
         const title = post.querySelector(".post-title").textContent.toLowerCase();
         const tags = post.dataset.tags.toLowerCase();
