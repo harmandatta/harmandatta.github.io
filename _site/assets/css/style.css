@@ -658,6 +658,9 @@ a {
     display: block;
     text-align: center;
   }
+  .posts-content img {
+    max-width: 400px;
+  }
 }
 body.home-page {
   margin: 0;
@@ -665,6 +668,7 @@ body.home-page {
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
   background: var(--color-background);
+  margin-bottom: 7%;
 }
 
 .posts-container {
@@ -836,6 +840,12 @@ body.home-page {
 
 .posts-content ol > li {
   list-style: decimal;
+}
+
+.posts-content table, th, td {
+  border: black solid 1px;
+  border-collapse: collapse;
+  padding: 0 5px 0 5px;
 }
 
 /* Base code block style */

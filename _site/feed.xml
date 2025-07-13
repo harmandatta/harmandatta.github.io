@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-13T03:28:05+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Harman Singh Datta</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Jenkinsfile Approval Stage: Usage, Types, and Implementation</title><link href="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" rel="alternate" type="text/html" title="Jenkinsfile Approval Stage: Usage, Types, and Implementation" /><published>2025-07-10T00:00:00+05:30</published><updated>2025-07-10T00:00:00+05:30</updated><id>http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages</id><content type="html" xml:base="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html"><![CDATA[<h2 id="jenkinsfile-approval-stage">Jenkinsfile Approval Stage</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-13T15:12:32+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Harman Singh Datta</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Jenkinsfile Approval Stage: Usage, Types, and Implementation</title><link href="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html" rel="alternate" type="text/html" title="Jenkinsfile Approval Stage: Usage, Types, and Implementation" /><published>2025-07-10T00:00:00+05:30</published><updated>2025-07-10T00:00:00+05:30</updated><id>http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages</id><content type="html" xml:base="http://localhost:4000/devops/2025/07/10/jenkinsfile-approval-stages.html"><![CDATA[<h2 id="jenkinsfile-approval-stage">Jenkinsfile Approval Stage</h2>
 <p>In modern CI/CD pipelines, not every step should be automated—particularly when it comes to production deployments or critical actions. For such cases, Jenkins provides a way to pause pipeline execution and wait for manual approval using the <code class="language-plaintext highlighter-rouge">input</code> directive.</p>
 
 <p>This feature adds a layer of human validation, making it suitable for quality gates, business approvals, or release management.</p>
@@ -101,7 +101,144 @@
 <h2 id="conclusion">Conclusion</h2>
 <p>Jenkins approval stages are essential for controlled and secure deployments. They give teams a chance to verify and intervene before high-risk actions. With support for yes/no inputs, options, and text parameters, Jenkins pipelines can flexibly integrate manual steps where necessary.</p>
 
-<p><em>Happy Pipelin-ing!</em></p>]]></content><author><name></name></author><category term="devops" /><category term="devops" /><category term="jenkins" /><summary type="html"><![CDATA[Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.]]></summary></entry><entry><title type="html">Jenkinsfile Usage and Implementation</title><link href="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" rel="alternate" type="text/html" title="Jenkinsfile Usage and Implementation" /><published>2025-07-09T00:00:00+05:30</published><updated>2025-07-09T00:00:00+05:30</updated><id>http://localhost:4000/devops/2025/07/09/jenkinsfile-usage</id><content type="html" xml:base="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html"><![CDATA[<p>Jenkins is a cornerstone tool in the DevOps ecosystem, allowing teams to automate builds, tests, and deployments using pipelines. At the core of this automation is the <strong>Jenkinsfile</strong>, a simple yet powerful way to define your CI/CD workflows as code.</p>
+<p><em>Happy Pipelin-ing!</em></p>]]></content><author><name></name></author><category term="devops" /><category term="devops" /><category term="jenkins" /><summary type="html"><![CDATA[Understand how to implement an approval stage in Jenkins pipelines. This post explores its usage, benefits, and types including manual input, choice, and yes/no approvals.]]></summary></entry><entry><title type="html">Securing Jenkins: Users, Credentials, and Role-based Access</title><link href="http://localhost:4000/devops/2025/07/09/jenkins-security-rbac.html" rel="alternate" type="text/html" title="Securing Jenkins: Users, Credentials, and Role-based Access" /><published>2025-07-09T00:00:00+05:30</published><updated>2025-07-09T00:00:00+05:30</updated><id>http://localhost:4000/devops/2025/07/09/jenkins-security-rbac</id><content type="html" xml:base="http://localhost:4000/devops/2025/07/09/jenkins-security-rbac.html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>Security is a critical component of any CI/CD system, and Jenkins is no exception. Out-of-the-box, Jenkins is powerful but requires configuration to ensure it’s secured against unauthorized access, data leaks, and malicious actions.</p>
+
+<p>This guide focuses on three essential aspects of Jenkins security:</p>
+<ol>
+  <li>Managing Users</li>
+  <li>Securing Credentials</li>
+  <li>Implementing Role-Based Access Control (RBAC)</li>
+</ol>
+
+<h2 id="1-user-management">1. User Management</h2>
+<h3 id="usage">Usage</h3>
+<p>Jenkins allows you to define users and manage authentication using built-in or external systems like LDAP, GitHub OAuth, or Active Directory.</p>
+
+<h3 id="implementation">Implementation</h3>
+<p>To enable user security:</p>
+<ol>
+  <li>Navigate to <strong>Manage Jenkins &gt; Configure Global Security</strong>.</li>
+  <li>Check <strong>Enable Security</strong>.</li>
+  <li>Choose an appropriate security realm:
+    <ul>
+      <li>Jenkins’ own user database</li>
+      <li>LDAP</li>
+      <li>GitHub OAuth</li>
+      <li>SSO plugins</li>
+    </ul>
+  </li>
+  <li>Create users via <strong>Manage Jenkins &gt; Manage Users</strong>.</li>
+</ol>
+
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+  <li>Disable anonymous access.</li>
+  <li>Enforce strong passwords.</li>
+  <li>Enable audit logging to track user actions.</li>
+</ul>
+
+<h2 id="2-securing-credentials">2. Securing Credentials</h2>
+<h3 id="usage-1">Usage</h3>
+<p>Jenkins uses a credential store to manage secrets like API tokens, SSH keys, and passwords. These are stored in an encrypted format on the Jenkins master.</p>
+
+<h3 id="implementation-1">Implementation</h3>
+<ol>
+  <li>Go to <strong>Manage Jenkins &gt; Credentials</strong>.</li>
+  <li>Store credentials under appropriate scopes:
+    <ul>
+      <li>Global</li>
+      <li>System</li>
+      <li>Folder</li>
+      <li>Project (via Pipeline)</li>
+    </ul>
+  </li>
+  <li>Use credentials safely in Jenkinsfile:</li>
+</ol>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Use Secret'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">withCredentials</span><span class="o">([</span><span class="n">string</span><span class="o">(</span><span class="nl">credentialsId:</span> <span class="s1">'my-secret-token'</span><span class="o">,</span> <span class="nl">variable:</span> <span class="s1">'TOKEN'</span><span class="o">)])</span> <span class="o">{</span>
+                    <span class="n">sh</span> <span class="s1">'curl -H "Authorization: Bearer $TOKEN" https://example.com/api'</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="best-practices-1">Best Practices</h3>
+<ul>
+  <li>Do not hard-code secrets in your Jenkinsfiles.</li>
+  <li>Use folder-level credentials to limit scope.</li>
+  <li>Rotate secrets regularly.</li>
+</ul>
+
+<h2 id="3-role-based-access-control-rbac">3. Role-Based Access Control (RBAC)</h2>
+<h3 id="usage-2">Usage</h3>
+<p>RBAC allows you to define granular permissions for different users or groups based on their roles in the organization.</p>
+
+<h3 id="implementation-2">Implementation</h3>
+<ol>
+  <li>Install <strong>Role-based Authorization Strategy</strong> plugin.</li>
+  <li>Go to <strong>Manage Jenkins &gt; Manage and Assign Roles</strong>.</li>
+  <li>Define roles under <strong>Manage Roles</strong>:
+    <ul>
+      <li>Define permissions for roles like <code class="language-plaintext highlighter-rouge">developer</code>, <code class="language-plaintext highlighter-rouge">admin</code>, <code class="language-plaintext highlighter-rouge">viewer</code>.</li>
+    </ul>
+  </li>
+  <li>Assign users or groups to roles via <strong>Assign Roles</strong>.</li>
+</ol>
+
+<h3 id="example-roles">Example Roles</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Permissions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Admin</td>
+      <td>All permissions</td>
+    </tr>
+    <tr>
+      <td>Developer</td>
+      <td>Read, Build, Configure on specific jobs</td>
+    </tr>
+    <tr>
+      <td>Viewer</td>
+      <td>Read-only access</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="best-practices-2">Best Practices</h3>
+<ul>
+  <li>Follow the principle of least privilege.</li>
+  <li>Avoid giving <code class="language-plaintext highlighter-rouge">Overall/Administer</code> to non-admin users.</li>
+  <li>Use folders to apply roles hierarchically.</li>
+</ul>
+
+<h2 id="benefits-of-jenkins-security-configuration">Benefits of Jenkins Security Configuration</h2>
+<ul>
+  <li>Prevent unauthorized access to jobs and credentials.</li>
+  <li>Isolate user roles to prevent accidental changes.</li>
+  <li>Protect secrets and sensitive integrations.</li>
+  <li>Meet compliance and audit requirements.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Securing Jenkins is essential for any team relying on it for CI/CD. With proper user management, secret storage, and access control, you can build a safe, maintainable pipeline environment that scales with your organization’s needs.</p>
+
+<p>Start with disabling anonymous access, then implement credentials storage and RBAC to ensure your Jenkins setup is secure by design.</p>
+
+<p><em>Happy Secure Pipelin-ing!</em></p>]]></content><author><name></name></author><category term="devops" /><category term="devops" /><category term="jenkins" /><category term="security" /><summary type="html"><![CDATA[Learn how to secure Jenkins by managing users, storing credentials securely, and applying role-based access control (RBAC) to protect your CI/CD pipelines.]]></summary></entry><entry><title type="html">Jenkinsfile Usage and Implementation</title><link href="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html" rel="alternate" type="text/html" title="Jenkinsfile Usage and Implementation" /><published>2025-07-09T00:00:00+05:30</published><updated>2025-07-09T00:00:00+05:30</updated><id>http://localhost:4000/devops/2025/07/09/jenkinsfile-usage</id><content type="html" xml:base="http://localhost:4000/devops/2025/07/09/jenkinsfile-usage.html"><![CDATA[<p>Jenkins is a cornerstone tool in the DevOps ecosystem, allowing teams to automate builds, tests, and deployments using pipelines. At the core of this automation is the <strong>Jenkinsfile</strong>, a simple yet powerful way to define your CI/CD workflows as code.</p>
 
 <p>In this post, you’ll learn:</p>
 <ol>
