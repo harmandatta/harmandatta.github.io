@@ -59,11 +59,12 @@ document.addEventListener('DOMContentLoaded', function(){
 function filterPosts(query) {
       const posts = document.querySelectorAll(".post-box");
       const q = query.toLowerCase();
-      alert("you wrote: "+q)
+      
       posts.forEach(post => {
         const title = post.querySelector(".post-title").textContent.toLowerCase();
         const tags = post.dataset.tags.toLowerCase();
         const match = title.includes(q) || tags.includes(q);
+        alert("matched: "+match)
         post.classList.toggle("hidden", !match);
       });
 }
