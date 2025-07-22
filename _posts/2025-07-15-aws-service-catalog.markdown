@@ -4,7 +4,7 @@ title: "Understanding AWS Service Catalog and Its Organizational Benefits"
 description: |
   Explore how AWS Service Catalog enables organizations to centrally manage, distribute, and govern IT services at scale, improving compliance and accelerating innovation.
 categories: aws
-tags: "devops jenkins security"
+tags: "aws organization service-catalog"
 level: Intermediate
 readtime: 7 min
 ---
@@ -21,8 +21,6 @@ AWS Service Catalog allows administrators to define and centrally manage a catal
 
 These products can be provisioned by end users in a self-service model, while maintaining control over the infrastructure setup and governance.
 
----
-
 ## Why Use AWS Service Catalog?
 
 ### Key Reasons
@@ -31,8 +29,6 @@ These products can be provisioned by end users in a self-service model, while ma
 - **Security and Compliance**: Apply guardrails, enforce tagging policies, and manage permissions.
 - **Operational Efficiency**: Reduce manual provisioning errors and speed up deployment.
 - **Self-Service Enablement**: Empower teams to deploy infrastructure without needing deep AWS expertise.
-
----
 
 ## Usage and Implementation
 
@@ -60,8 +56,6 @@ These products can be provisioned by end users in a self-service model, while ma
    - Assign IAM users/groups roles to allow product provisioning.
    - End users can browse and launch products via the AWS Console or CLI.
 
----
-
 ## Benefits
 
 ### For Admins
@@ -82,7 +76,6 @@ These products can be provisioned by end users in a self-service model, while ma
 - Helps meet compliance requirements (e.g., HIPAA, SOC2).
 - Accelerates cloud adoption with guardrails in place.
 
----
 
 ## Best Practices
 
@@ -91,14 +84,11 @@ These products can be provisioned by end users in a self-service model, while ma
 - Use StackSets with Service Catalog for broader deployment automation.
 - Integrate with AWS Config and AWS CloudTrail for visibility and audits.
 
----
-
 ## Conclusion
 
 AWS Service Catalog offers a centralized and secure way to manage and distribute approved AWS resources across an organization. By integrating it with AWS Organizations, you can ensure your entire enterprise adheres to compliance and governance while enabling teams to innovate and deploy faster.
 
 Implementing AWS Service Catalog is a strategic investment for long-term cloud scalability and operational efficiency.
----
 
 ## CloudFormation Example for AWS Service Catalog Product
 
@@ -135,3 +125,6 @@ Outputs:
 3. Optionally, define constraints to limit who can provision this product or how the parameters are configured.
 
 This approach helps standardize infrastructure across teams while ensuring compliance and governance.
+
+
+*Happy Sharing*
